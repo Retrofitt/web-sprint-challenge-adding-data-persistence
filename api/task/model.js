@@ -3,18 +3,20 @@
 const db = require('../../data/dbConfig')
 
 const getAll =  ()=>{
-    return db("tasks")
+    return db("tasks as t")
+        .leftJoin("projects as p", "t.project_id", "p.project_id")
+        .select("t.*", "p.project_name", "p.project_description")
 }
 
-const getById = tasks_id => {
+const getById = task_id => {
     return db("tasks")
-      .where('tasks_id', tasks_id)
+      .where('task_id', task_id)
       .first()
   }
 
-const create = async (tasks)=>{
+const create = async (task)=>{
     const [id] = await db("tasks")
-        .insert(tasks)
+        .insert(task)
     return getById(id)
 }
 
