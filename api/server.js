@@ -8,8 +8,8 @@ const server = express()
 server.use(express.json())
 
 server.use('/api/projects', projectRouter)
-server.use('/api/resource', resourceRouter)
-server.use('/api/task', taskRouter)
+server.use('/api/resources', resourceRouter)
+server.use('/api/tasks', taskRouter)
 
 server.get('/', (req, res)=>{
     res.send(`<h2>The Beginning of my API for the "Adding Data Persistence" Sprint Challenge</h2>`)
